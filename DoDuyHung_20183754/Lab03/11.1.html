@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "_//W3C//DTD HTML 4.0 Transition//EN">
+<html>
+
+<body>
+    <script type="text/javascript">
+    // Create array and add three elements
+    var myArray = new Array();
+    myArray.push("Tim");
+    myArray.push("Janice");
+    myArray.push("Joe");
+    //print out the contents and newline
+    document.write(myArray.toString());
+    document.write("<br>");
+    //access array element by index
+    document.write(myArray[1]);
+    document.write("<br>");
+    //print out the length of the array and newline
+    document.write("Array Size: " + myArray.length);
+    document.write("<br>");
+    //pop the last element off the array and display it
+    var who = myArray.pop();
+    document.write("Popped Element: "+ who);
+    document.write("<br>");
+    //print out the length of the array and newline
+    document.write("Array Size: "+myArray.length);
+    document.write("<br>");
+    document.write("<br>");
+    ///******////
+    //poplating array on instantiation
+    var otherArray = new Array("dog", 3, 8.4);
+    document.write(otherArray.toString());
+    document.write("<br>");
+    document.write("<br>");
+    //setting and accessing associative arrays
+    otherArray["keys"] = "value";
+    document.write(otherArray["keys"]);
+    document.write("<br>");
+    </script>
+</body>
+</html>
