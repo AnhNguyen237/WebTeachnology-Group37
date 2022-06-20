@@ -1,0 +1,17 @@
+h1 {
+    text-align: center;
+}
+p {
+    margin: 0.25in;
+    border: 0.25in solid black;
+    padding: 0.25in;
+    background: url(./images/white-bond-paper-texture-background-181641081.jpg);
+}
+body {
+    background: url(./images/BrickWall_WikimediaCommons_800x533.jpg);
+}
+.banner {
+    background: url(./images/3854df6ebdd5d92b09c383b545d751e1.jpg);
+    font-size: 50pt;
+    font-family: Arial Rounded MT Bold;
+}
