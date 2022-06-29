@@ -1,0 +1,38 @@
+body {
+    margin: 0px;
+    padding: 0px;
+}
+#header {
+    padding: 0.5em;
+    background: #7E91FF;
+    width: 100%;
+}
+#sidebar {
+    background: rgb(217, 255, 0);
+    float: right;
+    width: 19%;
+    height: 500px;
+}
+#content {
+    background: #A7FF63;
+    float: left;
+    width: 80%;
+    height: 500px;
+}
+#footer {
+    padding: 0.5em;
+    background:#FFB196;
+    clear: both;
+    width: 100%;
+}
+ul {
+    padding-top: 2em;
+    list-style-type: none;
+    margin-right: 1em;
+}
+ul li {
+    background: white;
+    margin: 0.5em 0;
+    padding: 0.3em;
+    border-right: 1em solid black
+}
