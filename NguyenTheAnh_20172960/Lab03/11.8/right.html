@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="left-blog">
+        <form name="blogForm" onsubmit="postBlog()">
+            <label for="blog-title">Blog's title:</label>
+            <br>
+            <input type="text" id="blog-title" name="blog-title">
+            <br></br>
+            <label for="blog-content">Blog's content:</label>
+            <br>
+            <input type="text" id="blog-content" name="blog-content" >
+            <br></br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+
+    <script type="text/javascript">
+        function postBlog() {
+            let blogTitle = "title="+document.forms["blogForm"]["blog-title"].value+";";
+            let blogContent = "content="+document.forms["blogForm"]["blog-content"].value+";";
+
+            const d = new Date();
+            d.setTime(d.getTime() + 24*60*60*1000);
+            let expires = "expires=" + d.toUTCString();
+
+            document.cookie = blogTitle + expires;
+            document.cookie = blogContent + expires;
+        }
+    </script>
+</body>
+</html>

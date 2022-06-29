@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script type="text/javascript">
+		function setAlign(align) {
+			var pTag = window.document.getElementById("paragraph");
+			pTag.setAttribute("align", align);
+		}
+	</script>
+    </head>
+    <body>
+        <form name="alignForm">
+            <select id="alignSelect">
+                <option value="left">left</option>
+                <option value="right">right</option>
+                <option value="center">center</option>
+            </select>
+            <input type="button" name="Go" value="Go" onclick="setAlign(document.alignForm.alignSelect.value)">
+	</form>
+	<p id="paragraph">This is some sample text</p>
+    </body>
+</html>

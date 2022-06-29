@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <a class="linkColor" href="#" style="color: red;"><h1>RED</h1></a>
+        <h2 class="colors" title="red">This's Red color!!!</h2>
+        <a class="linkColor" href="#" style="color: green"><h1>GREEN</h1></a>
+        <h2 class="colors" title="green">This's Green color!!!</h2>
+        <a class="linkColor" href="#" style="color: blue;"><h1>BLUE</h1></a>
+        <h2 class="colors" title="blue">This's Blue color!!!</h2>
+    </body>
+
+    <script>
+        const linkColor = document.querySelectorAll(".linkColor");
+        const colors = document.querySelectorAll(".colors");
+
+        changerColor.forEach((link, index) => {
+            const color = colors[index];
+
+            link.onmouseover = function() {
+                color.style.color = color.title;
+            }
+            link.onmouseout = function() {
+                color.style.color = "black";
+            }
+        })
+    </script>
+</html>

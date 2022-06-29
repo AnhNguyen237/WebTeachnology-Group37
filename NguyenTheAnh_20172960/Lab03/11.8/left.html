@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="right-blog">
+        <h2>Blog's title:</h2>
+        <h3 id="display-title"></h3>
+        <br></br>
+        <h2>Blog's content:</h2>
+        <h3 id="display-content"></h3>
+    </div>
+
+    <script type="text/javascript">
+        
+        console.log(document.cookie);
+
+        document.getElementById("display-title").innerText = getBlog("title");
+        document.getElementById("display-content").innerText = getBlog("content");
+
+
+        function getBlog(cname) {
+            let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for(let i = 0; i < ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="wrap-box" style="display: flex; justify-content: center; height: 60vh;">
+        <div class="left-form">
+            <form name="myForm" onsubmit="return validateForm()">
+                <label for="username">Username:</label>
+                <br>
+                <input type="text" id="username" name="username">
+                <h5 class="message"></h5>
+                <label for="Password">Password:</label>
+                <br>
+                <input type="password" id="password" name="password" >
+                <h5 class="message"></h5>
+                <label for="email">Email:</label>
+                <br>
+                <input type="email" id="email" name="email" >
+                <h5 class="message"></h5>
+                <label for="phone-number">Phone number:</label>
+                <br>
+                <input type="" id="phone-number" name="phone-number" >
+                <h5 class="message"></h5>
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+</body>
+
+<script>
+    function validateForm() {
+
+        let messageElement = document.querySelectorAll(".message");
+        let username = document.forms["myForm"]["username"].value;
+        var password = document.forms["myForm"]["password"].value;
+        let email=document.forms["myForm"]["email"].value;
+        let phoneNumber = document.forms["myForm"]["phone-number"].value;
+        let kiemTraDT = isNaN(phoneNumber);
+
+
+        //Username
+        if (username == "") {
+            alert("Chưa chưa nhập username!");
+            return false;
+        } else if(username.indexOf(" ") > 0) {
+            alert("Username không được chứa dấu cách!");
+            return false;
+        }
+
+        
+        //Password
+        if (password == "") {
+            alert("Chưa chưa nhập password!");
+            return false;
+        }
+        if(password.indexOf(" ") > 0) {
+            alert("Password không được chứa dấu cách!");
+            return false;
+        }
+        if(password.length < 6) {
+            alert("Password phải từ 6 kí tự trở lên!");
+            return false;
+        }
+
+        //Email
+        var aCong=email.indexOf("@");
+        var dauCham = email.lastIndexOf(".");
+        if (email == "") {
+            alert("Bạn chưa nhập email!");
+            return false;
+        }
+        if ((aCong<1) || (dauCham<aCong+2) || (dauCham+2>email.length)) {
+            alert("Email không chính xác");
+            return false;
+        }
+        //Phone number
+        if (phoneNumber == "") {
+            alert("Bạn chưa nhập số điện thoại");
+            return false;
+        }
+        if (kiemTraDT == true) {
+            alert("Điện thoại phải ở dạng số");
+            return false;
+        } 
+    }
+
+</script>
+</html>
