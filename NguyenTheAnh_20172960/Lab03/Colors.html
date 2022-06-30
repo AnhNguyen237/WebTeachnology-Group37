@@ -14,7 +14,7 @@
         <h2 class="colors" title="blue">This's Blue color!!!</h2>
     </body>
 
-    <script>
+    <script type="text/javascript">
         const linkColor = document.querySelectorAll(".linkColor");
         const colors = document.querySelectorAll(".colors");
 
@@ -23,10 +23,10 @@
 
             link.onmouseover = function() {
                 color.style.color = color.title;
-            }
+            };
             link.onmouseout = function() {
                 color.style.color = "black";
-            }
-        })
+            };
+        });
     </script>
 </html>
