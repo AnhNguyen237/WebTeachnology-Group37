@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <% include partials/head %>
+  </head>
+  <body>
+    <% include partials/loader %>
+    <% include partials/header %>
+    <div class="tt-breadcrumb">
+      <div class="container">
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li>Giỏ hàng</li>
+        </ul>
+      </div>
+    </div>
+    <div id="tt-pageContent">
+      <div class="container-indent">
+        <div class="container">
+          <h1 class="tt-title-subpages noborder">GIỎ HÀNG</h1>
+          <div class="tt-shopcart-table-02">
+            <table>
+              <tbody>
+                <% if(cartProduct != null){ cartProduct.forEach(function(item){
+                %>
+                <tr>
+                  <td>
+                    <div class="tt-product-img">
+                      <img
+                        src="<%= item.images %>"
+                        data-src="<%= item.images %>"
+                      />
+                    </div>
+                  </td>
+                  <td>
+                    <h2 class="tt-title">
+                      <a href="/product/<%= item.item._id %>"
+                        ><%= item.item.name %></a
+                      >
+                    </h2>
+                    <ul class="tt-list-description">
+                      <li>Hãng: <%=item.item.brand%></li>
+                      <li>Bộ nhớ trong: <%=item.item.memoryStorage%></li>
+                    </ul>
+                    <ul class="tt-list-parameters">
+                      <li>
+                        <div class="tt-price">
+                          <%= item.price %>₫
+                        </div>
+                      </li>
+                      <li>
+                        <div class="detach-quantity-mobile"></div>
+                      </li>
+                      <li>
+                        <div class="tt-price subtotal">
+                          <%= item.price %>₫
+                        </div>
+                      </li>
+                    </ul>
+                  </td>
+                  <td>
+                    <div class="tt-price">
+                      <%= item.item.price %>₫
+                    </div>
+                  </td>
+                  <td>
+                    <div class="detach-quantity-desctope">
+                      <div
+                        class="tt-input-counter style-01"
+                        data-id="<%= item.item._id %>"
+                      >
+                        <span class="minus-btn"></span>
+                        <input type="text" value="<%= item.qty %>" size="20" />
+                        <span class="plus-btn"></span>
+                      </div>
+                    </div>
+                  </td>
+
+                  <td class="box-pricei<%= item.item._id %>">
+                    <div class="tt-price subtotal">
+                      <%= item.price %>₫
+                    </div>
+                  </td>
+
+                  <td>
+                    <a
+                      href="/delete-item/<%= item.item._id %>"
+                      class="tt-btn-close"
+                    ></a>
+                  </td>
+                </tr>
+                <%})}%>
+              </tbody>
+            </table>
+            <div class="tt-shopcart-btn">
+              <div class="col-left">
+                <a class="btn-link" href="/"
+                  ><i class="icon-e-19"></i>Tiếp tục mua sắm</a
+                >
+              </div>
+              <div class="col-right">
+                <a class="btn-link" href="/delete-cart"
+                  ><i class="icon-h-02"></i>Xoá giỏ hàng</a
+                >
+                <a class="btn-link" href="/shopping_cart"
+                  ><i class="icon-h-48"></i>Cập nhật giỏ hàng</a
+                >
+              </div>
+            </div>
+          </div>
+          <div class="tt-shopcart-col">
+            <div class="row">
+              <div class="col-md-6 col-lg-4"></div>
+              <div class="col-md-6 col-lg-4"></div>
+              <div class="col-md-6 col-lg-4">
+                <div class="tt-shopcart-box tt-boredr-large">
+                  <table class="tt-shopcart-table01 box-pricett">
+                    <tbody>
+                      <tr>
+                        <th>Tổng hàng</th>
+                        <td class="tt-price"><%= session.cart.totalPrice %>₫</td>
+                      </tr>
+                    </tbody>
+                    <tfoot>
+                      <tr>
+                        <th>Tổng tất cả</th>
+                        <td class="tt-price"><%= session.cart.totalPrice %>₫</td>
+                      </tr>
+                    </tfoot>
+                  </table>
+                  <% if(session.cart.numItems != 0){ %>
+                  <%if (typeof(user) !== 'undefined' && user.isAuthenticated) {
+                  %>
+                  <a href="/add-order">
+                    <div class="d-grid gap-2">
+                      <button class="btn btn-primary" type="button">Chấp nhận thanh toán</button>
+                    </div>
+                  </a>
+                  <% }else if(typeof(user) == 'undefined'){ %>
+                  <a href="/login">
+                    <div class="d-grid gap-2">
+                      <button class="btn btn-primary" type="button">Đăng nhập để thanh toán</button>
+                    </div>
+                  </a>
+
+                  <% }else if(typeof(user) !== 'undefined' &&
+                  !user.isAuthenticated){ %>
+                  <a href="/verify-email">
+                    <div class="d-grid gap-2">
+                      <button class="btn btn-primary" type="button">Kích hoạt email để thanh toán</button>
+                    </div>
+                  </a>
+                  <% }}%>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <footer>
+      <% include partials/footer %>
+    </footer>
+    <a href="#" class="tt-back-to-top">BACK TO TOP</a>
+    <!-- Partials -->
+    <% include partials/modal-addtocartproduct %> 
+    <% include partials/modal-quickviewmodal %>
+    <% include partials/modal-subscribegood %> 
+    <% include partials/script %>
+  </body>
+  <script>
+    $(document).ready(function() {
+      var priceElement = document.querySelectorAll('.tt-price');
+      priceElement.forEach( price => {
+        var format = price.textContent.replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+        price.innerHTML = format;
+      })
+
+      $('.plus-btn').click(function() {
+       
+        priceElement.forEach( price => {
+          console.log(price.textContent)
+          price.innerHTML = price.textContent;
+        })
+      })
+    })
+  </script>
+</html>

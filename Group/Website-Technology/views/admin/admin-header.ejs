@@ -1,0 +1,65 @@
+<header>
+  <div class="wrapper">
+    <div class="gird">
+        <div class="header-navbar__top">
+            <div class="accounts">
+                <ul>
+                    <i class="fa-solid fa-user"></i>
+                    <%if (typeof(user) === 'undefined') { %>
+                        <li class="header__link-item">
+                            <a href="/create-account" class="header-link">Đăng ký |</a>
+                        </li>
+
+                        <li class="header__link-item">
+                            <a href="/login" class="header-link">Đăng nhập</a>
+                        </li>
+                    <% } %>
+                    <%if (typeof(user) !== 'undefined') { %>
+                        <li class="header-logined">
+                            <a href="#" class="header-link">Xin chào,
+                                <%= user.username %></a>
+                            <div class="header-account">
+                                <ul class="header-account__item">
+                                    <% if(!user.isAuthenticated) {%>
+                                        <li>
+                                            <a href="/verify-email" class="link-account">
+                                                <i class="fa-solid fa-envelope"></i>Xác thực email
+                                            </a>
+                                        </li>
+                                    <% } else { %>
+                                        <li>
+                                            <a href="/change-password" class="link-account">
+                                                <i class="fa-solid fa-lock"></i>Đổi mật khẩu
+                                            </a>
+                                        </li>
+                                    <% } %>
+                                    <li>
+                                      <a href="/" class="link-account">
+                                        <i class="fa-solid fa-right-left"></i>
+                                          Trang bán hàng
+                                      </a>
+                                    </li>
+                                    <li>
+                                        <a href="/logout" class="link-account">
+                                            <i class="fa-solid fa-right-from-bracket"></i>
+                                            Đăng xuất
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    <% } %>
+                </ul>
+            </div>
+        </div>
+        <div class="header-navbar__items">
+          <div class="admin-header__logo">
+              <a href="/admin">
+                  <h1 class="logo">Trùm Công Nghệ</h1>
+              </a>
+          </div>
+    </div>
+    </div>
+</div>
+</header>
+  

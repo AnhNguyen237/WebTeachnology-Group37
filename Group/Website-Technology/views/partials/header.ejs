@@ -1,0 +1,121 @@
+<header class='header'>
+    <div class='grid wide'>
+        <nav class='header__navbar hide-on-mobile-tablet'>
+            <ul class='header__navbar-list'>
+                <li class='header__navbar-item header__navbar-item--has-qr header__navbar-item--separate'>
+                    <a class='header__store' href='/products'>Cửa hàng</a>
+                </li>
+                <li class='header__navbar-item'>
+                    <span class='header__navbar-title--no-pointer'>Kết nối</span>
+
+                    <a href='' class='header__navbar-icon-link'>
+                        <i class='header__navbar-icon fab fa-facebook'></i>
+                    </a>
+                    <a href='' class='header__navbar-icon-link'>
+                        <i class='header__navbar-icon fab fa-instagram'></i>
+                    </a>
+                </li>
+            </ul>
+            <ul>
+				<i class="fa-solid fa-user"></i>
+				<%if (typeof(user) === 'undefined') { %>
+					<li class="header__link-item">
+						<a href="/create-account" class="header-link">Đăng ký |</a>
+					</li>
+
+					<li class="header__link-item">
+						<a href="/login" class="header-link">Đăng nhập</a>
+					</li>
+				<% } %>
+				<%if (typeof(user) !== 'undefined') { %>
+					<li class="header-logined">
+						<a href="#" class="header-link">Xin chào,
+							<%= user.username %></a>
+						<div class="header-account">
+							<ul class="header-account__item">
+								<li>
+									<a href="/account" class="link-account">
+										<i class="fa-solid fa-file-invoice"></i>Tài khoản
+									</a>
+								</li>
+								<% if(!user.isAuthenticated) {%>
+									<li>
+										<a href="/verify-email" class="link-account">
+											<i class="fa-solid fa-envelope"></i>Xác thực email
+										</a>
+									</li>
+								<% } else { %>
+									<li>
+										<a href="/change-password" class="link-account">
+											<i class="fa-solid fa-lock"></i>Đổi mật khẩu
+										</a>
+									</li>
+								<% } %>
+								<% if(user.username == 'admin') { %>
+									<li>
+										<a href="/admin" class="link-account">
+										  <i class="fa-solid fa-right-left"></i>
+											Trang admin
+										</a>
+									  </li>
+								<% } %>
+								<li>
+									<a href="/logout" class="link-account">
+										<i class="fa-solid fa-right-from-bracket"></i>
+										Đăng xuất
+									</a>
+								</li>
+							</ul>
+						</div>
+					</li>
+				<% } %>
+			</ul>
+		</nav>
+
+		<!-- Header with Search -->
+		<div class='header-with-search'>
+			<label for='mobile-search-checkbox' class='header__mobile-search'>
+				<i class='header__mobile-search-icon fas fa-search'></i>
+			</label>
+
+			<!-- Header Logo -->
+			<div class='header__logo hide-on-tablet'>
+				<a href='/' class='header__logo-link'>
+					<div class='logo-box__img'>
+						<img class='header__logo-img' src='/images/custom/logo.png' alt=''>
+					</div>
+					<div class='logo-box__text'>
+						<div class='text-logo'>Trùm</div>
+						<div class='text-logo'>Công Nghệ</div>
+					</div>
+				</a>
+			</div>
+			<input
+			type='checkbox' hidden id='mobile-search-checkbox' class='header__search-checkbox'/>
+			<!-- Header Search -->
+			<div class='header__search '>
+				<form class='header__form-search' method='GET' action='/search'>
+					<div class='header__search-input-wrap'>
+						<input
+						type='text' class='header__search-input' placeholder='Nhập để tìm kiếm sản phẩm' name='searchText'/>
+
+					<!-- Search history -->
+					</div>
+					<button type='submit' class='header__search-btn'>
+						<i class='header__search-btn-icon fas fa-search'></i>
+					</button>
+				</form>
+			</div>
+
+			<!-- Cart layout -->
+			<div class='header__cart'>
+				<div class='header__cart-wrap'>
+					<a href="/shopping_cart">
+						<i class='header__cart-icon fas fa-shopping-cart'></i>
+						<span class='header__cart-notice'><%= session.cart.numItems%></span>
+					</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</header>
